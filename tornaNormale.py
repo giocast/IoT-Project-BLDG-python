@@ -1,1 +1,0 @@
-pycom.heartbeat(True)
