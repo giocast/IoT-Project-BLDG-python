@@ -16,7 +16,7 @@ wlan.connect("VLLC", auth=(WLAN.WPA2, "vallavlciol"), timeout=5000)
 while not wlan.isconnected():
     machine.idle()
 print("Connected to WiFi\n")
-pycom.rgbled(0xff0000)
+pycom.rgbled(0x00ff00)
 client = MQTTClient("wipy", "io.adafruit.com",user="bldg", password="aio_WGqg64ap2BHmSOGHt61U8Zkp9Ltd", port=1883)
 
 client.set_callback(sub_cb)
@@ -35,7 +35,7 @@ while True:
     #per ogni messaggio aggiungiamo: seriale, data inizio intervallo, data fine intervallo, dimensione intervallo (in s) valore misurazione in intervallo
 
 
-    msg=serialWipy+"-"+dataInizio+"-"+dataFine+"-"+durataIntervallo+"-"+valoreMisurato
+    msg=serialWipy+"-"+dataInizio+"-"+dataFine+"-"+durataIntervallo+"-"+valoreMisurato+"\n\n"
     #per ogni messaggio aggiungiamo: seriale, data inizio intervallo, data fine intervallo, dimensione intervallo (in s) valore misurazione in intervallo
 
     client.publish(topic="bldg/feeds/bldgdata", msg=msg)
