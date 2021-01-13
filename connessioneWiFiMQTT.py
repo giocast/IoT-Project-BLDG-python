@@ -46,5 +46,3 @@ while True:
     client.check_msg()
 
     time.sleep(1)
-
-    print("vllc")
