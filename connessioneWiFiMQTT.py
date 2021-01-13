@@ -2,10 +2,10 @@ from network import WLAN
 from mqtt import MQTTClient
 import machine
 import time
-#from random import random
-#import random
+
 
 serialWipy = "000001"
+#seriale della Wipy/codice univoco assegnato dai progettisti
 
 def sub_cb(topic, msg):
    print(msg)
@@ -28,7 +28,15 @@ client.subscribe(topic="bldg/feeds/bldgdata")
 while True:
     print("Sending value")
 
-    msg=""+serialWipy
+    dataInizio="01/13/2021, 18:39:04"
+    dataFine="01/13/2021, 18:39:07"
+    durataIntervallo=str(3)
+    valoreMisurato=str(1)
+    #per ogni messaggio aggiungiamo: seriale, data inizio intervallo, data fine intervallo, dimensione intervallo (in s) valore misurazione in intervallo
+
+
+    msg=serialWipy+"-"+dataInizio+"-"+dataFine+"-"+durataIntervallo+"-"+valoreMisurato
+    #per ogni messaggio aggiungiamo: seriale, data inizio intervallo, data fine intervallo, dimensione intervallo (in s) valore misurazione in intervallo
 
     client.publish(topic="bldg/feeds/bldgdata", msg=msg)
     time.sleep(1)
