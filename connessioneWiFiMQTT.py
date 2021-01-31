@@ -4,8 +4,8 @@ import machine
 import time
 import utime
 
-serialWipy = "000001"
-#seriale della Wipy/codice univoco assegnato dai progettisti
+idKit = "000001"
+#seriale Kit/codice univoco assegnato dai progettisti
 
 def sub_cb(topic, msg):
    print(msg)
@@ -68,7 +68,7 @@ while True:
     #per ogni messaggio aggiungiamo: seriale, data inizio intervallo, data fine intervallo, dimensione intervallo (in s) valore misurazione in intervallo
 
 
-    msg=serialWipy+"-"+str(dataInizio)+"-"+str(dataFine)+"-"+durataIntervallo+"-"+valoreMisurato+"\n\n"
+    msg=idKit+"-"+str(dataInizio)+"-"+str(dataFine)+"-"+durataIntervallo+"-"+valoreMisurato+"\n\n"
     #per ogni messaggio aggiungiamo: seriale, data inizio intervallo, data fine intervallo, dimensione intervallo (in s) valore misurazione in intervallo
 
     client.publish(topic="bldg/feeds/bldgdata", msg=msg)
